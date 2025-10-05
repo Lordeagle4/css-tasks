@@ -77,6 +77,12 @@ td:last-child span {
     margin: 2px;
 }
 
+td:last-child span:hover {
+    transition: 0.5s ease;
+    width: 2.5em;
+    height: 2.5em;
+}
+
 footer {
     text-align: center;
     font-size: x-large;
@@ -95,6 +101,16 @@ p {
     background: linear-gradient(to top, rgb(113, 238, 116), rgb(166, 250, 168));
 }
 
+.read:hover {
+    background: linear-gradient(to top, rgb(5, 129, 40), rgb(44, 208, 104));
+}
+
+tr:hover td,
+tr:hover th {
+    transition: 0.5s ease;
+    padding-bottom: 2em;
+}
+
 .read td:nth-child(4) span {
     background: linear-gradient(to top, rgb(16, 195, 19), rgb(47, 234, 50));
     border-color: rgb(112, 205, 112);
@@ -102,6 +118,10 @@ p {
 
 .to-read {
     background: linear-gradient(to top, rgb(249, 232, 210), rgb(239, 238, 235));
+}
+
+.to-read:hover {
+    background: linear-gradient(to top, rgb(195, 190, 132), rgb(211, 211, 143));
 }
 
 .to-read td:nth-child(4) span {
@@ -113,12 +133,16 @@ p {
     background: linear-gradient(to top, rgb(240, 229, 130), rgb(245, 238, 176));
 }
 
+.in-progress:hover {
+    background: linear-gradient(to top, rgb(162, 146, 4), rgba(244, 224, 50, 0.872));
+}
+
 .in-progress td:nth-child(4) span {
     background: linear-gradient(to top, rgb(236, 206, 13), rgb(229, 212, 60));
     border-color: rgb(240, 229, 130);
 }
 
-tbody td:nth-child(4) span {
+td:nth-child(4) span {
     border: 0.1em solid darkgray;
     border-radius: 2em;
     display: inline-block;
@@ -127,10 +151,14 @@ tbody td:nth-child(4) span {
     width: 95%;
 }
 
+td:nth-child(4) span:hover {
+    transition: 0.5s ease;
+    padding: 1em;
+}
+
 tbody tr:first-child td:last-child span,
 tbody tr:nth-child(3) td:last-child span:first-child,
 tbody tr:nth-child(4) td:last-child span:not(:last-child),
 tbody tr:nth-last-child(1) td:last-child span:not(:last-child) {
     background-color: rgb(236, 206, 13);
 }
-
