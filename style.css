@@ -1,0 +1,136 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font: 1em sans-serif;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow-y: hidden;
+
+}
+
+main {
+    background-color: rgb(38, 43, 48);
+    height: 99vh;
+    width: 99.5%;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    color: white;
+}
+
+header h2 {
+    margin: 0.3em;
+    font-size: x-large;
+}
+
+header span {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    font-weight: bold;
+    font-size: large;
+}
+
+section {
+    background: aliceblue;
+    padding: 0.3em;
+}
+
+h1 {
+    margin: 0.7em 0;
+    font-size: 2em;
+}
+
+table {
+    text-align: center;
+    width: 99.5%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: linear-gradient(to bottom, rgb(134, 200, 242), rgb(60, 177, 249));
+    font-size: larger;
+}
+
+th,
+td {
+    vertical-align: middle;
+    padding: 0.7em 0;
+}
+
+td:last-child span {
+    display: inline-block;
+    width: 1.8em;
+    height: 1.8em;
+    border: 0.1em solid darkgray;
+    border-radius: 50%;
+    margin: 2px;
+}
+
+footer {
+    text-align: center;
+    font-size: x-large;
+    font-weight: bold;
+    margin: 0.5em 0 0 0.5em;
+    border: 0.1em solid white;
+    color: white;
+    height: 100%;
+}
+
+p {
+    margin: 0.5em auto;
+}
+
+.read {
+    background: linear-gradient(to top, rgb(113, 238, 116), rgb(166, 250, 168));
+}
+
+.read td:nth-child(4) span {
+    background: linear-gradient(to top, rgb(16, 195, 19), rgb(47, 234, 50));
+    border-color: rgb(112, 205, 112);
+}
+
+.to-read {
+    background: linear-gradient(to top, rgb(249, 232, 210), rgb(239, 238, 235));
+}
+
+.to-read td:nth-child(4) span {
+    background: linear-gradient(to top, rgb(207, 14, 14), rgb(240, 52, 52));
+    border-color: rgb(186, 15, 15);
+}
+
+.in-progress {
+    background: linear-gradient(to top, rgb(240, 229, 130), rgb(245, 238, 176));
+}
+
+.in-progress td:nth-child(4) span {
+    background: linear-gradient(to top, rgb(236, 206, 13), rgb(229, 212, 60));
+    border-color: rgb(240, 229, 130);
+}
+
+tbody td:nth-child(4) span {
+    border: 0.1em solid darkgray;
+    border-radius: 2em;
+    display: inline-block;
+    padding: 0.5em;
+    margin: 0.1em;
+    width: 95%;
+}
+
+tbody tr:first-child td:last-child span,
+tbody tr:nth-child(3) td:last-child span:first-child,
+tbody tr:nth-child(4) td:last-child span:not(:last-child),
+tbody tr:nth-last-child(1) td:last-child span:not(:last-child) {
+    background-color: rgb(236, 206, 13);
+}
+
