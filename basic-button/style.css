@@ -1,0 +1,96 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: aliceblue;
+}
+
+section {
+    margin: 1rcap;
+}
+
+h1 {
+    margin: 3rcap;
+    text-align: center;
+}
+
+div {
+    display: grid;
+    place-content: center;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rcap;
+    padding: auto 2rcap;
+}
+
+button {
+    padding: 1.5rcap;
+    font-size: medium;
+    border: none;
+}
+
+button:hover {
+    transition: 0.2s ease-in-out;
+
+}
+
+.default {
+    background-color: rgb(201, 211, 211);
+}
+
+.primary {
+    background-color: #1974fc;
+}
+
+.success {
+    background-color: #20ac6b;
+}
+
+.info {
+    background-color: #17ccf1;
+}
+
+.warning {
+    background-color: #fac011;
+    transform: perspective(1000px) translateZ(0);
+}
+
+.danger {
+    background-color: #ef3c4e;
+    transform: perspective(1000px) translateZ(0);
+}
+
+.default:hover {
+    background-color: rgb(179, 190, 190);
+    transform: scale(1.03) translateX(-0.5rcap);
+}
+
+.primary:hover {
+    background-color: #145cc8;
+    transform: scale(1.03) translateX(0.5rcap);
+}
+
+.success:hover {
+    background-color: #198754;
+    transform: scale(1.03) translateY(0.5rcap);
+}
+
+.info:hover {
+    background-color: #119ab5;
+    transform: scale(1.03) translateY(-0.5rcap);
+}
+
+.warning:hover {
+    background-color: #c4970f;
+    transform: perspective(100rcap) translateZ(5rcap);
+     box-shadow: 0 0 0 0.2rcap rgba(224, 168, 0, 0.25);
+}
+
+.danger:hover {
+    background-color: #a82331;
+    transform: perspective(100rcap) translateZ(-5rcap);
+    box-shadow: 0 0 0 0.2rcap rgba(200, 35, 53, 0.25);
+}

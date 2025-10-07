@@ -1,0 +1,214 @@
+       /* Insert the corrected CSS from above */
+        .stylish-container {
+    perspective: 1000px;
+    width: 350px; /* Explicit width for the container */
+    height: 500px; /* Explicit height for the container */
+}
+
+.stylish {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+    border-radius: 1em;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    box-shadow: 0 1em 2em rgba(0, 0, 0, 0.25);
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease;
+}
+
+.stylish-container:hover .stylish {
+    transform: rotateY(180deg);
+}
+
+.stylish .front-face {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.stylish .front-face {
+    transform: rotateY(0deg);
+}
+
+.stylish .back-face {
+    transform: rotateY(180deg);
+    background-color: rgb(255, 255, 255);
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+}
+
+.stylish .front-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.stylish .info {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 6em 2.2em 4em;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+    color: white;
+}
+
+.stylish .info h3 {
+    font-size: 2em;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.stylish .info p {
+    font-size: 0.8em;
+    font-weight: 400;
+    opacity: 0.9;
+    margin: 0.5em 0 1.8em;
+}
+
+.stylish .front-face button {
+    display: inline-block;
+    border: 0.1em solid rgba(255, 255, 255, 0.5);
+    padding: 0.5em 1.5em;
+    border-radius: 2em;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.stylish .front-face button:hover {
+    background: white;
+    color: #333333;
+    border-color: white;
+    transform: scale(1.05);
+}
+
+.stylish .back-face .hand {
+    margin: 1em;
+    padding-top: 1em;
+}
+
+.stylish .back-face .hand span {
+    font-size: 4em;
+    font-weight: 900;
+    display: inline-block;
+    transform: rotate(-30deg);
+    animation: shakehand 0.3s 3 linear;
+}
+
+@keyframes shakehand {
+    0% { transform: rotate(-90deg); }
+    50% { transform: rotate(-45deg); }
+    100% { transform: rotate(-30deg); }
+}
+
+.stylish .back-face .name {
+    line-height: 1.2;
+    margin: 0.3em 0 0.5em;
+    font-size: 2em;
+    font-weight: 450;
+    text-align: center;
+}
+
+.stylish .back-face .name .first-name {
+    display: block;
+    font-weight: 900;
+}
+
+.stylish .back-face .bio {
+    margin: 1em 2em;
+    font-size: 0.75em;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.6);
+    text-align: center;
+}
+
+.stylish .back-face .bio b {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.stylish .back-face .stats {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1em 2em;
+    width: 80%;
+}
+
+.stylish .back-face .stats div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.stylish .back-face .stats div:not(:last-child)::after {
+    content: "|";
+    font-weight: 500;
+    position: absolute;
+    top: 0;
+    right: -1em;
+}
+
+.stylish .back-face .stats span:first-child {
+    font-size: 1.1em;
+    font-weight: 700;
+    margin-bottom: 0.3em;
+}
+
+.stylish .back-face .stats span:last-child {
+    font-size: 0.75em;
+}
+
+.stylish .action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1em 2em;
+}
+
+.stylish .back-face .action button {
+    border: none;
+    padding: 0.35em 1.5em;
+    margin-right: 1em;
+    border-radius: 2em;
+    background: rgb(173, 21, 158);
+    color: white;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 0.5em 0.5em 0 rgba(173, 21, 158, 0.4);
+}
+
+.stylish .back-face .action button:hover {
+    background: white;
+    color: #333333;
+    transform: scale(1.05);
+}
+
+.stylish .action .share i {
+    display: inline-block;
+    font-size: 1em;
+    padding: 0.45em;
+    margin: 0 0.2em;
+    border-radius: 50%;
+    box-shadow: 0 0.5em 0.5em 0 rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+    

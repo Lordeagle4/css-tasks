@@ -1,0 +1,48 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body,
+main,
+section,
+div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main,
+section,
+div {
+    border: 2px solid;
+    width: 75%;
+    height: 75%;
+}
+
+body {
+    height: 100vh;
+    background-color: darkgrey;
+}
+
+main {
+    border-color: slategrey;
+}
+
+section {
+    border-color: bisque;
+}
+
+div {
+    width: 60%;
+    height: 60%;
+    border-color: wheat;
+    flex-direction: column;
+    text-align: center;
+}
+
+p {
+    align-self: flex-end;
+    margin: 3rem 1.5rem -2.5rem auto;
+}

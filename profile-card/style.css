@@ -1,0 +1,455 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background: #333333;
+    color: #dddddd;
+}
+
+header {
+    text-align: center;
+    margin-top: 2em;
+}
+
+section {
+    display: grid;
+    place-content: center;
+    gap: 3em;
+    grid-auto-flow: row;
+    margin: 2em;
+    padding: 2em;
+    background: white;
+}
+
+section>div:hover:not(:last-child) {
+    transition: 0.2s ease-in-out;
+    box-shadow: 0 2em 4em 0 rgba(0, 0, 0, 0.25);
+    transform: scale(1.03);
+}
+
+button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+@media (min-width: 577px) {
+    section {
+        margin: 4em;
+        padding: 4em;
+    }
+}
+
+@media (min-width: 768px) {
+    section {
+        grid-template-columns: repeat(3, 1fr);
+        margin: 2em;
+    }
+
+    .simple {
+        max-height: 380px;
+    }
+
+    .trendy {
+        max-height: 350px;
+    }
+}
+
+
+/* Basic */
+.basic {
+    color: #333333;
+    text-align: center;
+    box-shadow: 0 1em 2em 0 rgba(0, 0, 0, 0.25);
+}
+
+.basic h1 {
+    margin: 1em;
+}
+
+.basic h3 {
+    font-size: xx-large;
+    margin: 1em;
+}
+
+.basic p {
+    margin: 1em;
+    font-size: x-large;
+}
+
+.basic .title {
+    color: #a7a7a7;
+}
+
+.basic .socials a {
+    color: #333333;
+}
+
+.basic .footer,
+.basic .footer button {
+    background: black;
+    color: white;
+    padding: 0.02em;
+    font-size: large;
+}
+
+.basic .footer button {
+    padding: 0.5em;
+}
+
+/* Simple */
+.simple {
+    color: #333333;
+    text-align: center;
+    border-radius: 1em;
+    box-shadow: 0 1em 2em 0 rgba(0, 0, 0, 0.25);
+}
+
+
+.simple h1 {
+    margin: 0.5em;
+}
+
+.simple .header .banner {
+    border-radius: 1em 1em 0 0;
+}
+
+.simple-profile-picture {
+    border: 0.3em solid white;
+    border-radius: 50%;
+
+}
+
+.simple .body {
+    display: block;
+    height: 120px;
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    top: -100px;
+
+}
+
+.simple .body div {
+    position: absolute;
+    left: 50%;
+    top: -50px;
+    transform: translateX(-50%);
+}
+
+.simple .followers {
+    display: flex;
+    justify-content: space-between;
+    margin-top: -2em;
+    padding: 1.2em 3.5em;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Trendy */
+.trendy {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333333;
+    text-align: center;
+    box-shadow: 0 1em 2em 0 rgba(0, 0, 0, 0.25);
+}
+
+
+.trendy h1 {
+    margin: 0.2em;
+    font-size: large;
+}
+
+.trendy .info {
+    font-size: x-small;
+    font-weight: 500;
+}
+
+.trendy h5 {
+    font-weight: 400;
+    font-size: xx-small;
+
+}
+
+.trendy .followers p {
+    margin-top: 0.2em;
+    font-weight: 700;
+}
+
+.trendy button {
+    border: 0.05em solid rgb(248, 64, 64);
+    background: transparent;
+    font-size: x-small;
+    margin-top: 1.5em;
+    padding: 0.5em 2em;
+    cursor: pointer;
+}
+
+.trendy button:hover {
+    background: rgb(248, 64, 64);
+    color: white;
+    transform: scale(1.05);
+    transition: 0.2s ease-in-out;
+}
+
+.trendy .simple-profile-picture {
+    border: 0.2em solid rgba(225, 32, 64, 0.6);
+    border-radius: 50%;
+
+}
+
+.trendy .body {
+    display: block;
+    height: 120px;
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    top: -90px;
+
+}
+
+.trendy .body div {
+    position: absolute;
+    left: 50%;
+    top: -50px;
+    transform: translateX(-50%);
+}
+
+.trendy .followers {
+    display: flex;
+    justify-content: space-between;
+    margin-top: -5em;
+    padding: 1.2em 3.5em;
+}
+
+.trendy .footer {
+    background: linear-gradient(to top, rgb(225, 32, 64), rgb(247, 69, 69));
+}
+
+.trendy .footer button {
+    margin-top: 0;
+    padding: 1em;
+    color: white;
+}
+
+/* ——— Stylish Card Base ——— */
+.stylish-container {
+  perspective: 1000px;
+  width: 350px;
+  height: 500px;
+}
+
+.stylish {
+  position: relative;
+  height: 100%;
+  border-radius: 1em;
+  box-shadow: 0 1em 2em rgba(0, 0, 0, 0.25);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transform-style: preserve-3d;
+  transition: transform 0.8s;
+}
+
+.stylish-container:hover .stylish {
+  transform: rotateY(180deg);
+}
+
+/* ——— Shared Face Rules ——— */
+.stylish .front-face,
+.stylish .back-face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  will-change: transform;
+  border-radius: inherit;
+}
+
+/* ——— Front Face ——— */
+.stylish .front-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.stylish .info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 6em 2.2em 4em;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+  border-radius: inherit;
+}
+
+.stylish .info h3 {
+  font-size: 2em;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.stylish .info p {
+  font-size: 0.8em;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-bottom: 1.8em;
+}
+
+/* ——— Front Buttons ——— */
+.stylish .front-face button,
+.stylish .back-face .action button {
+  display: inline-block;
+  padding: 0.5em 1.5em;
+  border-radius: 2em;
+  font-size: 0.95em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.stylish .front-face button {
+  border: 0.1em solid rgba(255, 255, 255, 0.5);
+  background: transparent;
+  color: white;
+}
+
+.stylish .front-face button:hover {
+  background: white;
+  color: #333;
+  border-color: white;
+  transform: scale(1.05);
+}
+
+/* ——— Back Face ——— */
+.stylish .back-face {
+  background: white;
+  color: black;
+  transform: rotateY(180deg);
+  overflow: hidden;
+}
+
+.stylish .back-face .hand {
+  margin: 2em;
+  margin-bottom: 0.15em;
+  padding-top: 1em;
+}
+
+.stylish .back-face .hand span {
+  font-size: 4em;
+  font-weight: 900;
+  display: inline-block;
+  transform: rotate(-30deg);
+  animation: shakehand 0.3s 3 linear;
+}
+
+.stylish .back-face .hand span:hover {
+  animation: shakehand 0.6s linear infinite;
+}
+
+.stylish .back-face .name {
+  line-height: 1.2;
+  margin: 0.3em 0 0.5em 1.5em;
+  font-size: 2em;
+  font-weight: 450;
+}
+
+.stylish .back-face .name .first-name {
+  display: block;
+  font-weight: 900;
+}
+
+.stylish .back-face .bio {
+  margin: 1.5em 4em;
+  font-size: 0.75em;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.stylish .back-face .bio b {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+/* ——— Stats ——— */
+.stylish .back-face .stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 2em 4em;
+}
+
+.stylish .back-face .stats div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.stylish .back-face .stats div:not(:last-child)::after {
+  content: "|";
+  font-weight: 500;
+  position: absolute;
+  top: 0;
+  left: 4.5em;
+}
+
+.stylish .back-face .stats span:first-child {
+  font-size: 1.1em;
+  font-weight: 700;
+  margin-bottom: 0.3em;
+}
+
+.stylish .back-face .stats span:last-child {
+  font-size: 0.75em;
+}
+
+/* ——— Back Action Buttons ——— */
+.stylish .back-face .action {
+  display: flex;
+  align-items: center;
+  margin: 2.5em 3em;
+}
+
+.stylish .back-face .action button {
+  border: none;
+  padding: 0.35em 1.5em;
+  margin-right: 1em;
+  background: rgb(173, 21, 158);
+  color: white;
+  box-shadow: 0 0.5em 0.5em 0 rgba(173, 21, 158, 0.4);
+}
+
+.stylish .back-face button:hover {
+  background: white;
+  color: #333;
+  transform: scale(1.05);
+}
+
+.stylish .action .share i {
+  font-size: 1em;
+  padding: 0.45em;
+  margin-right: 0.2em;
+  border-radius: 50%;
+  box-shadow: 0 0.5em 0.5em 0 rgba(0, 0, 0, 0.1);
+}
+
+.stylish .action .share i:hover {
+  background: #333;
+  color: white;
+  transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+/* ——— Animations ——— */
+@keyframes shakehand {
+  0% { transform: rotate(90deg); }
+  50% { transform: rotate(0deg); }
+  100% { transform: rotate(90deg); }
+}

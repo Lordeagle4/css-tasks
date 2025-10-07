@@ -1,0 +1,72 @@
+
+/* ====== FLIP CARD FIX (paste this after your current styles) ====== 
+
+.stylish-container {
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+  width: 350px;
+  height: 500px;
+  overflow: visible; /* allow faces to be visible while flipping *
+  position: relative; /* keep stacking predictable *
+    transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+.stylish {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  border-radius: 1em;
+  height: 100%;
+  /* keep this visible while debugging — you can set overflow:hidden if needed after fix *
+  overflow: visible;
+  box-shadow: 0 1em 2em rgba(0, 0, 0, 0.25);
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transition: transform 0.8s;
+  -webkit-transition: -webkit-transform 0.8s;
+  backface-visibility: visible; /* allow children faces to handle their own backface *
+}
+
+/* trigger the flip *
+.stylish-container:hover .stylish {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+}
+
+/* both faces — scoped the same way to ensure identical specificity *
+.stylish .front-face,
+.stylish .back-face {
+  position: absolute;
+  inset: 0;                 /* top:0; right:0; bottom:0; left:0 *
+  width: 100%;
+  height: 100%;
+  display: block;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* front sits slightly forward so it wins when unflipped *
+.stylish .front-face {
+  transform: rotateY(0deg) translateZ(1px);
+  -webkit-transform: rotateY(0deg) translateZ(1px);
+  z-index: 2;
+}
+
+/* back rotated and nudged slightly toward viewer to avoid Chrome compositing bleed *
+.stylish .back-face {
+  transform: rotateY(180deg) translateZ(0.1px);
+  -webkit-transform: rotateY(180deg) translateZ(0.1px);
+  z-index: 1;
+}
+
+/* make sure images inside faces don't leak a backface *
+.stylish img {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+*/
