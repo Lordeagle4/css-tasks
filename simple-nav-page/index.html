@@ -1,29 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Navbar page</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
+
 <body>
     <header>
-        <nav>
+        <button id="open-sidebar-button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="sidebar" onclick="openSidebar()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+
+        </button>
+        <nav id="sidebar">
             <ul>
-                <li  class="home"><a href="#home" class="active-link">Home</a></li>
+                <li><button id="close-sidebar-button" aria-label="Close navigation" onclick="closeSidebar()">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+
+                    </button></li>
+                <li class="home"><a href="#home" aria-current="page" class="active-link">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="#login"  class="accent-link">Login</a></li>
+                <li><a href="#login" class="accent-link">Login</a></li>
             </ul>
         </nav>
+        <div id="over-lay" onclick="closeSidebar()" aria-hidden="true"></div>
     </header>
     <main>
         <h1>Lorem Ipsium</h1>
-        <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo repellendus incidunt aperiam nobis similique nostrum rerum suscipit reprehenderit vitae accusamus magni quos, tempora magnam at excepturi hic vero, alias rem?</P>
+        <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo repellendus incidunt aperiam nobis similique
+            nostrum rerum suscipit reprehenderit vitae accusamus magni quos, tempora magnam at excepturi hic vero, alias
+            rem?</P>
     </main>
     <footer>
-        <p>Have a nice day! <span>Eagle</span></p>
+        <p>Have a nice day, <span>Eagle</span>!</p>
     </footer>
 </body>
+
 </html>
