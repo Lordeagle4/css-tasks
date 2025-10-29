@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Report Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <nav class="card">
+                <div>
+                    <div class="logo"><i class="fas fa-chart-line"></i> <span>DealDeck</span></div>
+                    <ul class="nav-links">
+                        <li>
+                            <a href="#">Menu</a>
+                            <ul class="dropdown">
+                                <li><a href="#dashboard"><i class="fas fa-home"></i>Dashboard</a></li>
+                                <li><a href="#reports"><i class="fas fa-file-alt"></i>Reports</a></li>
+                                <li><a href="#products"><i class="fas fa-cube"></i>Products</a></li>
+                                <li><a href="#customers"><i class="fas fa-users"></i>Customers</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#financial">Financial</a>
+                            <ul class="dropdown">
+                                <li><a href="#transactions"><i class="fas fa-money-bill-wave"></i>Transactions</a></li>
+                                <li><a href="#invoices"><i class="fas fa-file-invoice"></i>Invoices</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#tools">Tools</a>
+                            <ul class="dropdown">
+                                <li><a href="#settings"><i class="fas fa-cog"></i>Settings</a></li>
+                                <li><a href="#feedback"><i class="fas fa-comment-dots"></i>Feedback</a></li>
+                                <li><a href="#chat"><i class="fas fa-headset"></i>Help</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="upgrade-card">
+                    <span><i class="fas fa-comments"></i></span>
+                    <h4>Upgrade to Pro</h4>
+                    <p>Discover the benefits of an upgraded account.</p>
+                    <button>Upgrade $30</button>
+                </div>
+            </nav>
+            <div class="header">
+                <h1>Sales Report</h1>
+                <span class="date-range">Friday, December 15th 2023</span>
+            </div>
+            <div class="header-actions">
+                <div class="header-buttons">
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                    <button class="notification-btn"><i class="fas fa-bell"></i></button>
+                </div>
+                <div class="user-profile">
+                    <img src="images/miller.jpg" alt="User Avatar">
+                    <div>
+                        <span class="user-name">Benedicta Miller</span>
+                        <span class="user-role">Admin <i class="fas fa-caret-down"></i></span>
+                    </div>
+                    <div class="user-dropdown">
+                        <a href="#profile">Profile</a>
+                        <a href="#settings">Settings</a>
+                        <a href="#logout">Logout</a>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+        <main>
+            <section class="statistics">
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <span class="icon"><i class="fas fa-receipt"></i></span>
+                            <span class="badge">+2.09%</span>
+                        </div>
+                        <div>
+                            <h4>Total Sales</h4>
+                            <p><span class="stat-price">$612.617</span> <span class="price-info">Products vs last
+                                    month</span></p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <span class="icon"><i class="fas fa-shopping-cart"></i></span>
+                            <span class="badge">+12.34%</span>
+                        </div>
+                        <div>
+                            <h4>Total Orders</h4>
+                            <p><span class="stat-price">34.760</span> <span class="price-info">Orders vs last
+                                    month</span></p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <span class="icon"><i class="fas fa-users"></i></span>
+                            <span class="badge red">-2.08%</span>
+                        </div>
+                        <div>
+                            <h4>Visitors</h4>
+                            <p><span class="stat-price">14.987</span> <span class="price-info">Visitors vs last
+                                    month</span></p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <span class="icon"><i class="fas fa-box"></i></span>
+                            <span class="badge">+12.01%</span>
+                        </div>
+                        <div>
+                            <h4>Total Sold Products</h4>
+                            <p><span class="stat-price">12.987</span> <span class="price-info">Products vs last
+                                    month</span></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Customer Chart Section -->
+                <div class="customer-chart">
+                    <div class="card">
+                        <div class="header">
+                            <div>
+                                <div class="title">Customer Habbits</div>
+                                <div class="subtitle">Track your customer habbits</div>
+                            </div>
+                            <select class="dropdown">
+                                <option>This year</option>
+                                <option>Last year</option>
+                                <option>Last 6 months</option>
+                            </select>
+                        </div>
+
+                        <div class="legend">
+                            <div class="legend-item">
+                                <div class="legend-dot seen"></div>
+                                <span>Seen product</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-dot sales"></div>
+                                <span>Sales</span>
+                            </div>
+                        </div>
+
+                        <div class="customer-chart-container">
+                            <canvas id="chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="more-stats">
+                <div class="product-stat">
+                    <div class="card">
+                        <div class="header">
+                            <div>
+                                <div class="title">Product Statistics</div>
+                                <div class="subtitle">Track your product sales</div>
+                            </div>
+                            <div class="dropdown">
+                                <span class="date">Today <i class="fas fa-caret-down"></i></span>
+                                <div class="dropdown-content">
+                                    <span>9.829</span>
+                                    <span>Product Sales</span>
+                                    <span class="badge">+5.34%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <div id="productChart"></div>
+                        </div>
+
+                        <div class="legend">
+                            <div class="legend-item">
+                                <div class="legend-dot"><i class="fas fa-eye"></i> Electronics</div>
+                                <div class="legend-label"><span>2.487</span><span class="badge">+1.8%</span></div>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-dot"><i class="fas fa-robot"></i> Games</div>
+                                <div class="legend-label"><span>1.828</span><span class="badge">+2.3%</span></div>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-dot"><i class="fas fa-lamp"></i> Furniture</div>
+                                <div class="legend-label"><span>1.463</span><span class="badge red">-1.04%</span></div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- customer growth -->
+                <div class="customer-growth">
+                    <div class="card">
+                        <div class="header">
+                            <div>
+                                <div class="title">Customer Growth</div>
+                                <div class="subtitle">Track customer by locations</div>
+                            </div>
+                            <div class="dropdown">
+                                <span>Today <i class="fas fa-caret-down"></i></span>
+                            </div>
+
+                            <div class="chart-container">
+                                <div id="customerGrowthChart">
+                                    <div class="circle-a">2.417</div>
+                                    <div class="circle-b">287</div>
+                                    <div class="circle-c">812</div>
+                                    <div class="circle-d">2.281</div>
+                                </div>
+                                <div class="countries-list">
+                                    <div class="country-item">
+                                        <span class="country-dot usa"><i class="fas fa-flag-usa"></i></span>
+                                        <span class="country-info">
+                                            <span class="country-name">United States</span>
+                                            <span class="country-value"></span>
+                                        </span>
+                                    </div>
+                                    <div class="country-item">
+                                        <span class="country-dot uk"><i class="fas fa-flag-germany"></i></span>
+                                        <span class="country-info">
+                                            <span class="country-name">Germany</span>
+                                            <span class="country-value"></span>
+                                        </span>
+                                    </div>
+                                    <div class="country-item">
+                                        <span class="country-dot australia"><i class="fas fa-flag-australia"></i></span>
+                                        <span class="country-info">
+                                            <span class="country-name">Australia</span>
+                                            <span class="country-value"></span>
+                                        </span>
+                                    </div>
+                                    <div class="country-item">
+                                        <span class="country-dot canada"><i class="fas fa-flag-france"></i></span>
+                                        <span class="country-info">
+                                            <span class="country-name">France</span>
+                                            <span class="country-value"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

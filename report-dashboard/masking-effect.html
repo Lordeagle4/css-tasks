@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Mask Animation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 100%);
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            width: 95vw;
+            max-width: 1200px;
+            height: 95vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-size: 120px;
+            font-weight: 900;
+            font-family: 'Arial Black', sans-serif;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #f7b731, #ff6b6b);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 8px;
+            position: relative;
+            animation: gradientShift 3s ease infinite;
+            
+            /* CSS Mask Animation */
+            -webkit-mask-image: radial-gradient(circle at 50% 50%, black 20%, transparent 20%);
+            mask-image: radial-gradient(circle at 50% 50%, black 20%, transparent 20%);
+            -webkit-mask-size: 50px 50px;
+            mask-size: 50px 50px;
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            animation: 
+                gradientShift 3s ease infinite,
+                maskReveal 2.5s ease-in-out forwards,
+                maskPosition 2.5s ease-in-out forwards;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes maskReveal {
+            0% {
+                -webkit-mask-size: 0px 0px;
+                mask-size: 0px 0px;
+            }
+            50% {
+                -webkit-mask-size: 150px 150px;
+                mask-size: 150px 150px;
+            }
+            100% {
+                -webkit-mask-size: 2000px 2000px;
+                mask-size: 2000px 2000px;
+            }
+        }
+
+        @keyframes maskPosition {
+            0% {
+                -webkit-mask-position: 0% 50%;
+                mask-position: 0% 50%;
+            }
+            25% {
+                -webkit-mask-position: 100% 0%;
+                mask-position: 100% 0%;
+            }
+            50% {
+                -webkit-mask-position: 100% 100%;
+                mask-position: 100% 100%;
+            }
+            75% {
+                -webkit-mask-position: 0% 100%;
+                mask-position: 0% 100%;
+            }
+            100% {
+                -webkit-mask-position: 50% 50%;
+                mask-position: 50% 50%;
+            }
+        }
+
+        /* Particles background effect */
+        .particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 4s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 40px;
+            display: flex;
+            gap: 15px;
+        }
+
+        button {
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .logo-text {
+                font-size: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-text" id="logo">AETOS</div>
+    </div>
+
+    <div class="controls">
+        <button onclick="replay()">Replay Animation</button>
+        <button onclick="changeEffect()">Change Effect</button>
+    </div>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const container = document.querySelector('.container');
+            for (let i = 0; i < 500; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 4 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        createParticles();
+
+        let effectIndex = 0;
+        const effects = [
+            {
+                name: 'reveal',
+                maskReveal: `
+                    0% { -webkit-mask-size: 0px 0px; mask-size: 0px 0px; }
+                    50% { -webkit-mask-size: 150px 150px; mask-size: 150px 150px; }
+                    100% { -webkit-mask-size: 2000px 2000px; mask-size: 2000px 2000px; }
+                `,
+                maskPosition: `
+                    0% { -webkit-mask-position: 0% 50%; mask-position: 0% 50%; }
+                    25% { -webkit-mask-position: 100% 0%; mask-position: 100% 0%; }
+                    50% { -webkit-mask-position: 100% 100%; mask-position: 100% 100%; }
+                    75% { -webkit-mask-position: 0% 100%; mask-position: 0% 100%; }
+                    100% { -webkit-mask-position: 50% 50%; mask-position: 50% 50%; }
+                `
+            },
+            {
+                name: 'wipe',
+                maskReveal: `
+                    0% { -webkit-mask-size: 0% 100%; mask-size: 0% 100%; }
+                    100% { -webkit-mask-size: 100% 100%; mask-size: 100% 100%; }
+                `,
+                maskPosition: `
+                    0%, 100% { -webkit-mask-position: 0% 50%; mask-position: 0% 50%; }
+                `
+            },
+            {
+                name: 'spotlight',
+                maskReveal: `
+                    0% { -webkit-mask-size: 50px 50px; mask-size: 50px 50px; }
+                    100% { -webkit-mask-size: 2500px 2500px; mask-size: 2500px 2500px; }
+                `,
+                maskPosition: `
+                    0% { -webkit-mask-position: 50% 50%; mask-position: 50% 50%; }
+                    100% { -webkit-mask-position: 50% 50%; mask-position: 50% 50%; }
+                `
+            }
+        ];
+
+        function replay() {
+            const logo = document.getElementById('logo');
+            logo.style.animation = 'none';
+            setTimeout(() => {
+                logo.style.animation = 'gradientShift 3s ease infinite, maskReveal 2.5s ease-in-out forwards, maskPosition 2.5s ease-in-out forwards';
+            }, 10);
+        }
+
+        function changeEffect() {
+            effectIndex = (effectIndex + 1) % effects.length;
+            const effect = effects[effectIndex];
+            
+            // Remove existing keyframes
+            const styleSheet = document.styleSheets[0];
+            for (let i = styleSheet.cssRules.length - 1; i >= 0; i--) {
+                if (styleSheet.cssRules[i].name === 'maskReveal' || styleSheet.cssRules[i].name === 'maskPosition') {
+                    styleSheet.deleteRule(i);
+                }
+            }
+            
+            // Add new keyframes
+            styleSheet.insertRule(`@keyframes maskReveal { ${effect.maskReveal} }`, styleSheet.cssRules.length);
+            styleSheet.insertRule(`@keyframes maskPosition { ${effect.maskPosition} }`, styleSheet.cssRules.length);
+            
+            replay();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Habits</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 700px;
+            width: 100%;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .subtitle {
+            font-size: 12px;
+            color: #999;
+            margin-top: 4px;
+        }
+
+        .dropdown {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 13px;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .legend {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .seen { background: #e8e8e8; }
+        .sales { background: #5b6ff5; }
+
+        .stats {
+            position: absolute;
+            top: 140px;
+            right: 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .stat-badge {
+            background: #2d3748;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .stat-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: white;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-top: 20px;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div>
+                <div class="title">Customer Habbits</div>
+                <div class="subtitle">Track your customer habbits</div>
+            </div>
+            <select class="dropdown">
+                <option>This year</option>
+                <option>Last year</option>
+                <option>Last 6 months</option>
+            </select>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-dot seen"></div>
+                <span>Seen product</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot sales"></div>
+                <span>Sales</span>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-badge">
+                <div class="stat-dot"></div>
+                <span>43,787 Products</span>
+            </div>
+            <div class="stat-badge">
+                <div class="stat-dot"></div>
+                <span>39,784 Products</span>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="chart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('chart');
+        const ctx = canvas.getContext('2d');
+
+        // Set canvas resolution
+        function resizeCanvas() {
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width * window.devicePixelRatio;
+            canvas.height = rect.height * window.devicePixelRatio;
+            ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+            drawChart();
+        }
+
+        const data = {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+            seen: [45, 35, 20, 55, 25, 30, 28],
+            sales: [48, 38, 22, 50, 18, 35, 25]
+        };
+
+        function drawChart() {
+            const rect = canvas.getBoundingClientRect();
+            const w = rect.width;
+            const h = rect.height;
+            const padding = { left: 40, right: 40, top: 20, bottom: 40 };
+            const chartW = w - padding.left - padding.right;
+            const chartH = h - padding.top - padding.bottom;
+
+            ctx.clearRect(0, 0, w, h);
+
+            // Draw Y-axis labels and grid
+            const yLabels = [0, 20, 40, 60];
+            ctx.font = '11px sans-serif';
+            ctx.fillStyle = '#999';
+            ctx.strokeStyle = '#f0f0f0';
+            ctx.lineWidth = 1;
+
+            yLabels.forEach(label => {
+                const y = padding.top + chartH - (label / 60) * chartH;
+                ctx.fillText(label + 'K', 10, y + 4);
+                
+                ctx.beginPath();
+                ctx.moveTo(padding.left, y);
+                ctx.lineTo(w - padding.right, y);
+                ctx.stroke();
+            });
+
+            // Draw bars
+            const barWidth = 18;
+            const groupWidth = chartW / data.labels.length;
+            const maxValue = 60;
+
+            data.labels.forEach((label, i) => {
+                const x = padding.left + i * groupWidth + groupWidth / 2;
+                const seenH = (data.seen[i] / maxValue) * chartH;
+                const salesH = (data.sales[i] / maxValue) * chartH;
+
+                // Seen product bar (light gray)
+                ctx.fillStyle = '#e8e8e8';
+                ctx.beginPath();
+                ctx.roundRect(x - barWidth - 3, padding.top + chartH - seenH, barWidth, seenH, [8, 8, 0, 0]);
+                ctx.fill();
+
+                // Sales bar (blue)
+                ctx.fillStyle = '#5b6ff5';
+                ctx.beginPath();
+                ctx.roundRect(x + 3, padding.top + chartH - salesH, barWidth, salesH, [8, 8, 0, 0]);
+                ctx.fill();
+
+                // X-axis label
+                ctx.fillStyle = '#999';
+                ctx.textAlign = 'center';
+                ctx.fillText(label, x, h - 15);
+            });
+
+            // Highlight April
+            const aprIndex = 3;
+            const aprX = padding.left + aprIndex * groupWidth + groupWidth / 2;
+            
+            // Add dots above April bars
+            ctx.fillStyle = '#1a1a1a';
+            ctx.beginPath();
+            ctx.arc(aprX - 10, padding.top + chartH - (data.seen[aprIndex] / maxValue) * chartH - 15, 4, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.arc(aprX + 10, padding.top + chartH - (data.sales[aprIndex] / maxValue) * chartH - 15, 4, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        // CanvasRenderingContext2D.prototype.roundRect polyfill
+        if (!CanvasRenderingContext2D.prototype.roundRect) {
+            CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
+                if (w < 2 * r) r = w / 2;
+                if (h < 2 * r) r = h / 2;
+                this.moveTo(x + r, y);
+                this.arcTo(x + w, y, x + w, y + h, r);
+                this.arcTo(x + w, y + h, x, y + h, r);
+                this.arcTo(x, y + h, x, y, r);
+                this.arcTo(x, y, x + w, y, r);
+                this.closePath();
+            };
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+    </script>
+</body>
+</html>

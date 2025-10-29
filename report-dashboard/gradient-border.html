@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: black;
+        }
+
+        @property --angle {
+            syntax: "<angle>";
+            inherits: false;
+            initial-value: 0deg;
+        }
+
+        #grad1 {
+            --angle: 0deg;
+            position: relative;
+            height: 400px;
+            width: 400px;
+            margin: 5rem auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            &::before, &::after {
+                content: "";
+                position: absolute;
+                top: -10px;
+                left: -10px;
+                right: -10px;
+                bottom: -10px;
+                z-index: -1;
+                border: 10px solid transparent;
+                border-image: conic-gradient(from  var(--angle), red 0deg, red 90deg, transparent 90deg, transparent 180deg, green 180deg, green 270deg, transparent 270deg) 1;
+                animation: spin 4s linear infinite;
+            }
+            &::after {
+                top: -20px;
+                left: -20px;
+                right: -20px;
+                bottom: -20px;
+                border-width: 20px;
+                filter: blur(10px);
+            }
+            &:hover::before, &:hover::after {
+                animation-play-state: paused;
+            }
+            /* or browsers that do not support gradients 
+  background-image: conic-gradient(red 0deg, red 90deg, white 90deg, white 180deg, green 180deg, green 270deg, white 270deg);
+  animation: spin 4s linear infinite;
+  */
+        }
+
+        @keyframes spin {
+            0% {
+                --angle: 0deg;
+            }
+
+            100% {
+                --angle: 360deg;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <div id="grad1">
+        <h1>Gradient Border</h1>
+        <p>This is a div with a gradient border.</p>
+    </div>
+
+</body>
+
+</html>
