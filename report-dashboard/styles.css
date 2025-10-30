@@ -296,7 +296,7 @@ main .statistics {
 
 main .more-stats {
     margin-top: 1rem;
-    width: 40%;
+    width: 35%;
 }
 
 main .badge {
@@ -528,17 +528,65 @@ main .stat-card {
         }
 
         .dropdown-content {
-            display: flex;
             position: absolute;
-            top: 110%;
-            right: 10%;
+            top: 90%;
+            right: 30%;
             border-radius: 6px;
             z-index: 10;
-            flex-direction: column;
-            padding: 1rem;
+            padding: 1.5rem;
             min-width: 120px;
+            line-height: normal;
+            background-color: #ffffff;
+            .stat-price {
+                font-size: 1.5rem;
+                font-weight: bold;
+                display: block;
+                margin-bottom: 0.2rem;
+            }
+            .label {
+                font-size: 0.775rem;
+                color: #666666;
+                display: block;
+                margin-bottom: 0.2rem;
+            }
             .badge {
                 margin-bottom: 0.5rem;
+            }
+        }
+    }
+    .chart-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        height: 200px;
+        margin-top: 1rem;
+        #productChart, #productChart::after, #productChart::before {
+            width: 110px;
+            height: 110px;
+            border: 10px solid #c3c3ca;
+            border-color: red #c3c3ca #c3c3ca red;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            &::after {
+                top: -38%;
+                left: -38%;
+                content: '';
+                padding: 4.3rem;
+                border-color: var(--link-primary) #c3c3ca #c3c3ca var(--link-primary);
+                transform: rotate(-30deg);
+            }
+            &::before {
+                content: '';
+                top: -65%;
+                left: -65%;
+                padding: 5.8rem;
+                border-color: var(--link-primary) #c3c3ca #c3c3ca var(--link-primary);
+                transform: rotate(-40deg);
             }
         }
     }
