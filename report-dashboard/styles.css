@@ -590,4 +590,39 @@ main .stat-card {
             }
         }
     }
+    .legend {
+        padding: 1rem .5rem 0;
+        .legend-item {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 400;
+            i {
+                font-size: small;
+                margin-right: .5rem;
+            }
+            .badge {
+                margin-left: .5rem;
+            }
+        }
+    }
+    .chart-container {
+        display: flex;
+        justify-content: space-between;
+        #customerGrowthChart {
+            position: relative;
+            width: 60%;
+            div {
+                position: absolute;
+                border-radius: 50%;
+            }
+            .circle-a {
+                width: 120px;
+                height: 120px;
+                top: -70px;
+                left: 0;
+                background-color: var(--link-primary);
+            }
+        }
+    }
 }
